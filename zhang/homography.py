@@ -1,6 +1,6 @@
 import cv2 
 import numpy as np 
-import scipy as sp 
+import math
 
 # add homogeneous / delete it
 def hom(x):
@@ -36,14 +36,14 @@ def get_H(objpoints, imgpoints):
     N_x = normalize(objpoints)
     N_u = normalize(imgpoints)
 
-    # learn from another implementation by combine two transpose, it is clear
-    objpoints = np.dot(objpoints, N_x)
-    imgpoints = np.dot(imgpoints, N_u)
-
     # adding homogeneous value, after normalization to keep it to be 1, 
     # (x): or needing to calculate it back to 1
     objpoints = hom(objpoints)
     imgpoints = hom(imgpoints)
+
+    # learn from another implementation by combine two transpose, it is clear
+    objpoints = np.dot(objpoints, N_x)
+    imgpoints = np.dot(imgpoints, N_u)
 
     # append method is low-efficient for numpy, change method
     M = np.zeros((N_points * 2, 9))

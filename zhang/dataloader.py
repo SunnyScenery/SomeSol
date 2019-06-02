@@ -1,11 +1,14 @@
 import glob
 import numpy as np
 import cv2
+import os
 
 def dataloader(root='/Users/scenery/Code/SomeGit/Stereo/Problems/stereo/'):
     # set root path
+    os.makedirs(root + "corner", exist_ok=True)
     root_origin = root + 'left/'
     root_corner = root + 'corner/'
+    
     # root_undistort = '/Users/scenery/Code/SomeGit/Stereo/Problems/stereo/undistort/'
 
     # termination criteria
@@ -22,26 +25,26 @@ def dataloader(root='/Users/scenery/Code/SomeGit/Stereo/Problems/stereo/'):
     images = sorted(glob.glob(root_origin + '*.jpg'))
 
     for i, fname in enumerate(images):
-    img = cv2.imread(fname)
-    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        img = cv2.imread(fname)
+        gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-    # Find the chess board corners
-    ret, corners = cv2.findChessboardCorners(gray, (7,6),None)
+        # Find the chess board corners
+        ret, corners = cv2.findChessboardCorners(gray, (7,6),None)
 
-    # If found, add object points, image points (after refining them)
-    if ret == True:
-        objpoints.append(objp)
+        # If found, add object points, image points (after refining them)
+        if ret == True:
+            objpoints.append(objp)
 
-        corners2 = cv2.cornerSubPix(gray,corners,(11,11),(-1,-1),criteria)
-        imgpoints.append(corners2)
+            corners2 = cv2.cornerSubPix(gray,corners,(11,11),(-1,-1),criteria)
+            imgpoints.append(corners2)
 
-        # Draw and display the corners
-        img = cv2.drawChessboardCorners(img, (7,6), corners2,ret)
-        #cv2.imshow('img',img)
-        #cv2.waitKey(500)
-        cv2.imwrite(root_corner + 'image%d.jpg' % i, img)
-    
-    if ret == False:
-        print('%d image is false' % i)
+            # Draw and display the corners
+            img = cv2.drawChessboardCorners(img, (7,6), corners2,ret)
+            #cv2.imshow('img',img)
+            #cv2.waitKey(500)
+            cv2.imwrite(root_corner + 'image%d.jpg' % i, img)
+        
+        if ret == False:
+            print('%d image does not contain enough feature points' % i)
 
     return objpoints, imgpoints
