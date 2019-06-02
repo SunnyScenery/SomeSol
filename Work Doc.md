@@ -1,4 +1,12 @@
-# Work Doc
+# Work Report
+
+姓名: 王琳淞
+
+邮箱: wanglinsung@gmail.com
+
+学校: 东南大学
+
+Github respository for this: https://github.com/SunnyScenery/SomeSol
 
 ## plan
 
@@ -60,7 +68,7 @@ $$
 $$
 By (1) and (2), we can get the (u,v) on the image plane
 
-### P3
+####P3
 
 It is a ray from the camera through the point on the image plane to the infinity
 $$
@@ -68,7 +76,7 @@ $$
 $$
 (X,Y,Z) is the point in the camera coordinates. X and Y will change with Z changing.
 
-### P4
+####P4
 
 There are two common radial distortions, positive radial distortion and negative radial distortion. There are also other types of distortion, such as tangential distortion. It is because the camera is not perfectly parallel to the image plane so that  some areas will be closer in picture.
 
@@ -88,15 +96,23 @@ $$
 
 if given the distortion coefficients with the 2D image point, we could get two binary quadratic equations. To get (x', y'), we could solve the two equations by some means. Finally, we could get 4 sets of (x', y') points. Since the origin is at the corner and starts from (0, 0), the all-positive point should be the coordinate before distortion.
 
-### P5
+####P5
 
 After transforming into the correct coordinates, the calibration firstly extracts some feature points of the calibration picture. Then they are used to perform certain algorithm to calculate or approach the camera intrinsic.
 
-### P6&P7
+####P6&P7
 
 [Codes in my Github](https://github.com/SunnyScenery/SomeSol)
 
-[reference: tutorials of opencv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html#calibration)
+reference: [tutorials of opencv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html#calibration)
+
+#### P8
+
+Codes in my Github
+
+reference: [Burger-CameraCalibration-20160516.pdf](http://staff.fh-hagenberg.at/burger/)
+
+reference: [An implementation on github](https://github.com/goldbema/CameraCalibration)
 
 ##record
 
@@ -118,7 +134,7 @@ graphs that help are in the slides from cmu cv class.
 
 > ref: [camera_resection1](https://mixedreality.fandom.com/wiki/Camera_resectioning) and [camera resection2](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/EPSRC_SSAZ/node3.html) and the best one, [slides from cmu computer vision course](http://www.cs.cmu.edu/~16385/s17/Slides/11.1_Camera_matrix.pdf)
 
-*optical* (or lens or camera) *center*
+question: *optical* (or lens or camera) *center* -> distance between the two origins in different system when being converting into the same plane
 
 ### W1D3
 
@@ -138,7 +154,7 @@ At first, I missed the similarity relation, and by solving the equation it seem 
 
 opencv uses the rotation vectors. [additional material about rotation vectors in csdn](https://blog.csdn.net/mightbxg/article/details/79363699)
 
-left09.jpg and left11.jpg: cv2.findChessboardCorners() could not find the corner of these two pictures
+left09.jpg and left11.jpg: cv2.findChessboardCorners() could not find enough(6x7) feature points
 
 in the Tutorial of opencv-python, it introduces the process of camera calibration and undistortion. There are several questions.
 
@@ -169,7 +185,7 @@ in the Tutorial of opencv-python, it introduces the process of camera calibratio
 
 questions remained for the geometric interpretation part
 
-[absolute conic(left)](https://blog.csdn.net/YhL_Leo/article/details/49357087)
+[introducation about absolute conic(left)](https://blog.csdn.net/YhL_Leo/article/details/49357087)
 
 (好多说是方法的详解,其实就只是个翻译)
 
@@ -179,7 +195,7 @@ questions remained for the geometric interpretation part
 
 最近学习状态不太对..进度拖后了..
 
-大致流程: 求单应矩阵，求相机内参，求每幅图相应的外参，求畸变矫正系数，微调所有参数
+张氏标定大致流程: 求单应矩阵，求相机内参，求每幅图相应的外参，求畸变矫正系数，微调所有参数
 
 实现参照:[Burger-CameraCalibration-20160516.pdf](http://staff.fh-hagenberg.at/burger/)
 
@@ -188,3 +204,16 @@ questions remained for the geometric interpretation part
 ### W1D7
 
 继续完成Zhang's method.
+
+先完成基本方法(no refining), 将得到的camera matrix比较,然后进一步加入refining逐步优化.
+
+不知道为什么结果里optical center的属性总是不对,反复想了好久,差不多是cv2.calibrateCamera()的两倍,应该不是缺少refining吧.联系了计算机学院一个这个方向的老师的研究生,明天去请教下他.
+
+## Summary
+
+由于最近的学习状态不太好,并且张正友相机标定比我预想的多花了时间,进度稍微偏慢,后面需要调整状态加快进度了.
+
+写代码的时候一般演算过程在纸上写写画画了,比较难整理出来.
+
+相机标定的实现尽量自己参考着那份tutorial完成,碰到实在没有思路或者实现方法有问题的时候再看看别人代码.
+
