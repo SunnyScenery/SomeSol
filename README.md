@@ -20,7 +20,7 @@ python3 P6P7.py
 
 use
 
-```python
+```shell
 python3 calibration.py --imgpath 'your-path-to-images'
 ```
 
