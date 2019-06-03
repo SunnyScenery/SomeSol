@@ -14,9 +14,9 @@ for running this, change the root path to your path. They are path of origin ima
 python3 P6P7.py
 ```
 
-###Zhang's method of camera calibration
+### Zhang's method of camera calibration
 
-####in folder zhang/
+#### in folder zhang/
 
 use
 
@@ -40,6 +40,6 @@ It will also create a directory called 'corner'. Images with corner points are s
 
 this implementation still remains more efforts
 
-####in jupyter/testForZhang.ipynb
+#### in jupyter/testForZhang.ipynb
 
 This is used for some tests when implementing.
