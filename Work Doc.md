@@ -114,6 +114,61 @@ reference: [Burger-CameraCalibration-20160516.pdf](http://staff.fh-hagenberg.at/
 
 reference: [An implementation on github](https://github.com/goldbema/CameraCalibration)
 
+####Additional Question
+
+I came up with an idea to estimate the depth of the pixels. What if we could use method of statistics to get to know or estimate the distance between different levels of ambiguity. After that, we could guess the depth of the pixels.
+
+And after considering problem 3, we could get a ray. So we could use one more camera to get one more ray. The intersection point will be the true point in real coordinate, which means we could get to know the depth of one pixel.
+
+#### P9
+
+In left camera plane:
+$$
+\left[ \begin{matrix} u\\\nonumber v\\ 1\end{matrix} \right] = M_l X^T
+$$
+In right camera plane:
+$$
+\left[ \begin{matrix} u'\\\nonumber v'\\ 1\end{matrix} \right] = M_r \left[ R|t \right] \left[ \begin{matrix} X^T\\1\end{matrix} \right]
+$$
+
+#### P10
+
+This graph in slides of cmu helps understand the whole coordinates.
+
+![image-20190605205639474](/Users/scenery/Library/Application Support/typora-user-images/image-20190605205639474.png)
+
+In my understanding, we could firstly let the x be (X, Y, Z), then we have these two equations,
+$$
+\left[ \begin{matrix} u\\v\\ 1\end{matrix} \right] = M_l \left[ I|0 \right] \left[ \begin{matrix} X\\Y\\Z\\1\end{matrix} \right]
+$$
+
+$$
+\left[ \begin{matrix} u'\\ v'\\ 1\end{matrix} \right] = M_r \left[ R|t \right] \left[ \begin{matrix} X\\Y\\Z\\1\end{matrix} \right]
+$$
+
+and for e and e', we could have,
+$$
+\left[ \begin{matrix} 0\\0\\ 0\end{matrix} \right] = M_l \left[ I|0 \right] \left[ \begin{matrix} X'\\Y'\\Z'\\1\end{matrix} \right]
+$$
+
+$$
+\left[ \begin{matrix} u''\\v''\\ 1\end{matrix} \right] = M_r \left[ R|t \right] \left[ \begin{matrix} X'\\Y'\\Z'\\1\end{matrix} \right]
+$$
+
+By the four equations above, we could get a line from e' (u'', v'') to x' (u', v'). This is the epipolar line in right camera plane.
+
+> remain deeper understanding of the geo meaning
+
+####P11
+
+> remain understanding of geo meaning
+
+#### P12
+
+> show github url, record results here and analysis
+
+#### P13
+
 ##record
 
 ### W1D1
@@ -209,11 +264,18 @@ questions remained for the geometric interpretation part
 
 不知道为什么结果里optical center的属性总是不对,反复想了好久,差不多是cv2.calibrateCamera()的两倍,应该不是缺少refining吧.联系了计算机学院一个这个方向的老师的研究生,明天去请教下他.
 
-## Summary
+### W2D3
 
-由于最近的学习状态不太好,并且张正友相机标定比我预想的多花了时间,进度稍微偏慢,后面需要调整状态加快进度了.
+[epipolar geometry in opencv](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_epipolar_geometry/py_epipolar_geometry.html#epipolar-geometry)
 
-写代码的时候一般演算过程在纸上写写画画了,比较难整理出来.
+[slides of epipolar geometry in stanford](https://web.stanford.edu/class/cs231a/course_notes/03-epipolar-geometry.pdf)
 
-相机标定的实现尽量自己参考着那份tutorial完成,碰到实在没有思路或者实现方法有问题的时候再看看别人代码.
+[slides of epipolar geometry in umd](ttp://users.umiacs.umd.edu/\~ramani/cmsc828d/lecture27.pdf)
 
+[notes of epipolar geometry in stanford](wget http://vision.stanford.edu/teaching/cs231a_autumn1112/lecture/lecture9_epipolar_geometry_cs231a.pdf)
+
+[slides of epipolar in cmu]()
+
+Also, the slides from cmu are very useful.
+
+The code of stereo calibration are adapted from the tutorials of opencv-python.
