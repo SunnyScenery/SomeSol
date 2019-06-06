@@ -21,7 +21,7 @@ python3 P6P7.py
 use
 
 ```python
-python3 calibration.py --imgpath 'your-path-to-images'
+python calibration.py --imgpath 'your-path-to-images'
 ```
 
 to run,
@@ -43,3 +43,13 @@ this implementation still remains more efforts
 ####in jupyter/testForZhang.ipynb
 
 This is used for some tests when implementing.
+
+### P12
+
+for running this, use
+
+```python
+python P12.py --imgpath 'your-path-to-images'
+```
+
+the path should contain two folders, 'left' and 'right'

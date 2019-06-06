@@ -157,17 +157,80 @@ $$
 
 By the four equations above, we could get a line from e' (u'', v'') to x' (u', v'). This is the epipolar line in right camera plane.
 
-> remain deeper understanding of the geo meaning
+In the slides of cmu(the graph below), due to the points O, O', x' is on the same plane, we could get a equation that:
+$$
+x'\cdot[t \times (Rx)] = 0 \nonumber\\
+Where \ t = OO',\ x' = Ox',\ Rx = O'x'
+$$
+changing it into matrix form:
+$$
+x'^T[t_{\times}]Rx = 0 \nonumber\\
+Where \ a \times b = \left[ \begin{matrix} 0&-a_z&a_y\\a_z&0&-a_x\\-a_y&a_x&0\end{matrix} \right]\left[ \begin{matrix} b_x\\b_y\\b_z\end{matrix} \right] = [a_{\times}]b
+$$
+E is $$[t_x]Rx$$. By transposing this equation, we get:
+$$
+(Ex)^T x' = 0 \nonumber
+$$
+So the epipolar line is I' = Ex
+
+> Question: Here we only know Ex mean a line in the right camera plane, but how could we know this line is the epipolar line. Ex means $$[t \times (Rx)]$$, which is orthogonal to the OO'x' plane. Ex also means I', a line in the OO'x plane. How?
+
+> Answer: The first equation is about vectors. The second equation means a point on a line, which could not be thought as vectors form (really?). Whether is it right?
 
 ####P11
 
-> remain understanding of geo meaning
+In uncalibrated case, we could further derive the fundamental matrix from below equations:
+$$
+x'^TK'^{-T}EK^{-1}x = 0\nonumber\\
+Where\ K\ and\ K'\ are\ the\ intrinsic\ matrix\ for\ each\ camera \\
+$$
 
-#### P12
+$$
+F = K'^{-T}EK^{-1} \tag{fundamental matrix}
+$$
 
-> show github url, record results here and analysis
+####P12
+
+Code is in Github, named P12.py,
+
+The results is as follows:
+
+```
+left camera matrix is:
+[[534.12898424   0.         339.54419909]
+ [  0.         534.10657393 230.93708727]
+ [  0.           0.           1.        ]]
+right camera matrix is:
+[[539.20692239   0.         327.58884914]
+ [  0.         538.42384565 247.61221689]
+ [  0.           0.           1.        ]]
+left camera distortion matrix is:
+[[-2.92454881e-01  1.23551455e-01  1.24349847e-03 -2.39255260e-04
+  -4.25403824e-03]]
+right camera distortion matrix is:
+[[-3.01528611e-01  1.81229102e-01  2.43507862e-06  6.59733339e-04
+  -1.35269220e-01]]
+the rotation matrix between left to right is:
+[[ 0.97823634  0.00326689 -0.20746806]
+ [ 0.01009767  0.99794182  0.06332576]
+ [ 0.20724793 -0.0640425   0.97618997]]
+the translation matrix between left to right is:
+[[-0.59230305]
+ [-0.93823965]
+ [ 0.32113031]]
+the Essential matrix between left to right is:
+[[-0.1976909  -0.26038215 -0.93623596]
+ [ 0.43689492 -0.03688347  0.51157601]
+ [ 0.91183924 -0.58801886 -0.2321628 ]]
+the Fundamental matrix between left to right is:
+[[ 2.76340694e-06  3.63988451e-06  5.21131742e-03]
+ [-6.11598397e-06  5.16344255e-07 -1.86772142e-03]
+ [-6.26364055e-03  3.11199962e-03  1.00000000e+00]]
+```
 
 #### P13
+
+
 
 ##record
 
@@ -279,3 +342,14 @@ questions remained for the geometric interpretation part
 Also, the slides from cmu are very useful.
 
 The code of stereo calibration are adapted from the tutorials of opencv-python.
+
+### W2D4
+
+Still confused about the geometric understanding of the fundamental matrix(essential matrix).
+
+try to fix the wrong results in Zhang's camera calibration method
+
+[a very clear introducation about how to get epipolar line](https://blog.csdn.net/u012936940/article/details/80723609)
+
+This blog shows how to get the equation by combining the rigid motion and coplanarity
+
