@@ -14,14 +14,19 @@ for running this, change the root path to your path. They are path of origin ima
 python3 P6P7.py
 ```
 
-###Zhang's method of camera calibration
+### Zhang's method of camera calibration
 
-####in folder zhang/
+#### in folder zhang/
 
 use
 
+<<<<<<< HEAD
 ```python
 python calibration.py --imgpath 'your-path-to-images'
+=======
+```shell
+python3 calibration.py --imgpath 'your-path-to-images'
+>>>>>>> 2b979d410703fd576d2128b2aa4b835aa8594a71
 ```
 
 to run,
@@ -40,9 +45,10 @@ It will also create a directory called 'corner'. Images with corner points are s
 
 this implementation still remains more efforts
 
-####in jupyter/testForZhang.ipynb
+#### in jupyter/testForZhang.ipynb
 
 This is used for some tests when implementing.
+<<<<<<< HEAD
 
 ### P12
 
@@ -53,3 +59,5 @@ python P12.py --imgpath 'your-path-to-images'
 ```
 
 the path should contain two folders, 'left' and 'right'
+=======
+>>>>>>> 2b979d410703fd576d2128b2aa4b835aa8594a71
