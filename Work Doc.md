@@ -176,6 +176,8 @@ So the epipolar line is I' = Ex
 > Question: Here we only know Ex mean a line in the right camera plane, but how could we know this line is the epipolar line. Ex means $$[t \times (Rx)]$$, which is orthogonal to the OO'x' plane. Ex also means I', a line in the OO'x plane. How?
 
 > Answer: The first equation is about vectors. The second equation means a point on a line, which could not be thought as vectors form (really?). Whether is it right?
+>
+> 
 
 ####P11
 
@@ -352,4 +354,8 @@ try to fix the wrong results in Zhang's camera calibration method
 [a very clear introducation about how to get epipolar line](https://blog.csdn.net/u012936940/article/details/80723609)
 
 This blog shows how to get the equation by combining the rigid motion and coplanarity
+
+### W3D4
+
+准备了一个周考了三门考试,时间来不及了..
 

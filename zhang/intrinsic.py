@@ -46,7 +46,7 @@ def get_intrinsic(Hs):
 
     # get the final cameraMatrix
     cameraM = np.array([[alpha, gamma, u_c],
-                        [0.   , beta, v_c],
-                        [0.   , 0.  , 1. ]])
+                        [0.   , beta , v_c],
+                        [0.   , 0.   , 1. ]])
 
     return cameraM
