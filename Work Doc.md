@@ -359,3 +359,8 @@ This blog shows how to get the equation by combining the rigid motion and coplan
 
 准备了一个周考了三门考试,时间来不及了..
 
+![image-20190613215200298](/Users/scenery/Library/Application Support/typora-user-images/image-20190613215200298.png)
+
+https://github.com/opencv/opencv/blob/master/samples/python/stereo_match.py
+
+https://docs.opencv.org/4.1.0/d2/d85/classcv_1_1StereoSGBM.html
