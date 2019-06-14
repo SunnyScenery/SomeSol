@@ -20,13 +20,8 @@ python3 P6P7.py
 
 use
 
-<<<<<<< HEAD
 ```python
 python calibration.py --imgpath 'your-path-to-images'
-=======
-```shell
-python3 calibration.py --imgpath 'your-path-to-images'
->>>>>>> 2b979d410703fd576d2128b2aa4b835aa8594a71
 ```
 
 to run,
@@ -45,10 +40,9 @@ It will also create a directory called 'corner'. Images with corner points are s
 
 this implementation still remains more efforts
 
-#### in jupyter/testForZhang.ipynb
+#### in jupyter/
 
 This is used for some tests when implementing.
-<<<<<<< HEAD
 
 ### P12
 
@@ -59,5 +53,17 @@ python P12.py --imgpath 'your-path-to-images'
 ```
 
 the path should contain two folders, 'left' and 'right'
-=======
->>>>>>> 2b979d410703fd576d2128b2aa4b835aa8594a71
+
+###P1417
+
+for running this, use
+
+```python
+python P1417.py --imgpath 'your-path-to-images'
+```
+
+the path should contain two folders, 'left' and 'right', it will make a folder named corner, containing all the images in the process and the final output of the depth map image.
+
+### Work Doc
+
+Record the plans, procedure and some problems met in the whole work.

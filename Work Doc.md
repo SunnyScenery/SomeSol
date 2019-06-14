@@ -232,7 +232,75 @@ the Fundamental matrix between left to right is:
 
 #### P13
 
+By the epipolar line we know, we could get the equation,
+$$
+x'^TFx = 0
+\\
+\left[ \begin{matrix} \nonumber x_1'&x_2'&1\end{matrix} \right]\left[ \begin{matrix} F_{11}&F_{12}&F_{13}\\F_{21}&F_{22}&F_{23}\\F_{31}&F_{32}&F_{33}\end{matrix} \right]\left[ \begin{matrix} x_1\\x_2\\1\end{matrix} \right] = 0
+\\
+let\ F_i = F_{ij},j=1,2,3
+\\
+F_1xx_1' + F_2xx_2'+F_3x=0
+\\
+assume\ x_2' = 1\\
+then \ x_1' = \frac{-F_3x-F_2x}{F_1x}\\
+the\ 3D \ coordinates\ is,\\
+X' = sH^{-1}x',\\
+where\ H = K[R|t]
+$$
 
+#### P14
+
+Code is on the github
+
+Briefly, the pair of images are rectified. However, there may be problems in undistortion that make the epipolar line of the same corner point could no fix the another one.
+
+#### P15
+
+Now *baseline b* is the distance between two camera center *OO'*, 
+$$
+b = |t|
+$$
+
+#### P16
+
+Due to the similarity in triangle, we could get
+
+![image-20190614153214802](/Users/scenery/Library/Application Support/typora-user-images/image-20190614153214802.png)
+
+and in another case,
+
+![image-20190614153307359](/Users/scenery/Library/Application Support/typora-user-images/image-20190614153307359.png)
+
+where *B* is the *baseline b*
+
+#### P17
+
+Code in github.
+
+The depth map is full of messes. The results we expected should be that the whole chessboard are recognized as a same depth plane, or at least a plane with different levels. However, the white and black blocks are mis-recognized.
+
+By changing the maximum allowed difference parameter, the difference is reduced in each block.
+
+By looking at the left and right rectified images carefully, there could be problems in the undistortion parts.
+
+To improve the quality of depth map, it might be useful to focus on the undistortion.
+
+#### P18
+
+I think the supervised approaches could be easily used for this problem. It is a typical prediction problem, inputing data and predicting a depth value. Also, the depth ground truth could be collected by other equipment such as LiDAR system.
+
+I take a brief view of the published work of the top 100 on KITTI stereo 2015. The only unsupervised method is the 73rd, "[Deep Rigid Instance Scene Flow](http://scholar.google.de/scholar?q=Deep Rigid Instance Scene Flow)", by introducing an energy minimization problem.
+
+And the 84th, [Cascade Residual Learning: A Two-stage Convolutional Neural Network for Stereo Matching](https://arxiv.org/abs/1708.09204), shows a method of training a network with ground truth and using this to refine the following parameters.
+
+Others are typical supervised approaches by looking at their design of loss function.
+
+#### P19
+
+I prefer the deep learning based approaches in real time scenarios. These methods show a high accuracy with relatively fast speed. We could see it at the evaluation page that there could be methods with a speed of 0.14s or 0.03s, while the speed of SGBM method is about 0.08s ([source](https://blog.csdn.net/KYJL888/article/details/79240525)). With the equipment better, it could be even faster. By improving the efficiency using parallel methods or other method, we could also accelerate it. However, such methods also have certain concerns. 1. When we are accelerating the computation, we are adding more equipment  to the car. 2. We have not fully understood such approaches so we won't know when and where the problems could come out. The stability in real time scenarios is not good. 
+
+The deep learning based approaches have more potential to do better. 
 
 ##record
 
